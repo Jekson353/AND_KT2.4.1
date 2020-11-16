@@ -15,13 +15,8 @@ interface OnInteractionListener{
     fun onShare(post: Post){}
 }
 
-typealias OnLikeListener = (post: Post) -> Unit
-typealias OnShareListener = (post: Post) -> Unit
-
 class PostAdapter(
     private val onInteractionListener: OnInteractionListener
-//    private val onLikeListener: OnLikeListener,
-//    private val onShareListener: OnShareListener
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -47,8 +42,6 @@ class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
 
 class PostViewHolder(
     private val binding: CardPostBinding,
-//    private val onLikeListener: OnLikeListener,
-//    private val onShareListener: OnShareListener,
     private val onInteractionListener: OnInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(post: Post) {
@@ -64,13 +57,10 @@ class PostViewHolder(
 
             like.setOnClickListener {
                 onInteractionListener.onLike(post)
-                //onLike(post)
             }
             share.setOnClickListener {
                 onInteractionListener.onShare(post)
-                //onShareListener(post)
             }
-
 
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {

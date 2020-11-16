@@ -69,15 +69,6 @@ class MainActivity : AppCompatActivity() {
                 AndroidUtils.hideSoftKeyBoard(this)
             }
         }
-
-        binding.imageBtnCancel.setOnClickListener {
-            with(binding.editTextContent){
-                setText("")
-                clearFocus()
-                AndroidUtils.hideSoftKeyBoard(this)
-            }
-        }
-
     }
 
 }
